@@ -66,8 +66,6 @@ function test() {
 
 };
 
-test();
-
 //seleccionamos el botón que se encuentra en el index para que al hacer click inicie con el test
 const startButton = document.querySelector(".start");
 
