@@ -1,5 +1,5 @@
 // creamos la función principal
-function test() {
+function diagnosticoAnsiedad() {
     // creamos 2 alerts, uno para definir de que trata el script y otro para explicar el significado de las respuestas
     alert("Durante las últimas 2 semanas, ¿con qué frecuencia ha sentido molestias por los siguientes problemas?");
     alert("Ingrese un Número del 0 al 3 para indicar la frecuencia, 0 - nunca, 1 - varios días, 2 - más de la mitad de los días, 3 - casi todos los días");
@@ -70,7 +70,7 @@ function test() {
 //seleccionamos el botón que se encuentra en el index para que al hacer click inicie con el test
 const startButton = document.querySelector(".start");
 
-startButton.addEventListener("click", test); 
+startButton.addEventListener("click", diagnosticoAnsiedad); 
 
 
 

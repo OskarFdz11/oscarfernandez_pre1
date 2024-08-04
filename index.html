@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test diagnóstico de nivel de ansiedad</title>
+    <title>Test de Ansiedad</title>
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <h1>Test diagnóstico de nivel de ansiedad</h1>
 
-    <button class="start">Iniciar Test</button>
+    <h1>Test de Ansiedad</h1>
+    <p>Durante las últimas 2 semanas, ¿con qué frecuencia ha sentido molestias por los siguientes problemas?</p>
+    <p>Ingrese un número del 0 al 3 para indicar la frecuencia:</p>
+    <ul>
+        <li>0 - nunca</li>
+        <li>1 - varios días</li>
+        <li>2 - más de la mitad de los días</li>
+        <li>3 - casi todos los días</li>
+    </ul>
 
+    <div class="question-container hidden">
+        <p id="question"></p>
+        <input type="number" id="answer" min="0" max="3" />
+        <button id="next-button">Siguiente</button>
+    </div>
 
+    <div class="result hidden" id="result"></div>
 
-    <script src="./js/main.js"></script>
+    <button class="start">Comenzar Test</button>
+
+    <script src="test.js"></script>
 </body>
 </html>
