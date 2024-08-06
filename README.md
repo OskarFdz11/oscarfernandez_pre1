@@ -1,4 +1,4 @@
-# oscarfernandez_pre1
+# oscarfernandez_pre2
 
 El proyecto consiste en una mini encuesta para saber el nivel de ansiedad en una persona.
 Se creó un archivo index.html sencillo, con una hoja de estilos sencilla, en el cual interactúa el usario.
