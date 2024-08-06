@@ -19,6 +19,7 @@ function diagnosticoAnsiedad() {
     const resultContainer = document.getElementById("result");
     const startButton = document.querySelector(".start");
     const resetButton = document.getElementById("reset-button");
+    const historialButton = document.getElementById("historial-button");
 
     // Mostrar la primera pregunta
     function mostrarPregunta() {
@@ -46,32 +47,62 @@ function diagnosticoAnsiedad() {
 
     // Calcular el resultado del test
     function calcularResultado() {
-        const puntaje = respuestas.reduce((acumulador, valorActual) => acumulador + valorActual, 0);
+        const puntaje = respuestas.reduce((acumulador, valor) => acumulador + valor, 0);
 
         let resultadoTexto;
+        let nivelAnsiedad;
 
         switch (true) {
             case (puntaje >= 0 && puntaje <= 4):
+                nivelAnsiedad = "Mínimo";
                 resultadoTexto = `Su puntaje fue: ${puntaje}. Su nivel de ansiedad es Mínimo.`;
                 break;
             case (puntaje >= 5 && puntaje <= 9):
+                nivelAnsiedad = "Leve";
                 resultadoTexto = `Su puntaje fue: ${puntaje}. Su nivel de ansiedad es Leve.`;
                 break;
             case (puntaje >= 10 && puntaje <= 14):
+                nivelAnsiedad = "Moderado";
                 resultadoTexto = `Su puntaje fue: ${puntaje}. Su nivel de ansiedad es Moderado.`;
                 break;
             case (puntaje >= 15):
+                nivelAnsiedad = "Severo";
                 resultadoTexto = `Su puntaje fue: ${puntaje}. Su nivel de ansiedad es Severo.`;
                 break;
             default:
                 resultadoTexto = "Puntaje no válido.";
+                nivelAnsiedad = "Desconocido";
         }
+
+        // Guardar el resultado en el historial
+        const fecha = new Date().toLocaleString();
+        historialResultados.agregarResultado(fecha, puntaje, nivelAnsiedad);
 
         resultContainer.textContent = resultadoTexto;
         resultContainer.classList.remove("hidden");
         questionContainer.classList.add("hidden");
         resetButton.classList.remove("hidden");
     }
+    
+
+    // Mostrar el historial de resultados caprurados 
+    const historialResultados = {
+        resultados: [],
+        
+        agregarResultado: function(fecha, puntaje, nivel) {
+            this.resultados.push({ fecha, puntaje, nivel });
+        },
+    
+        mostrarResultados: function() {
+            if (this.resultados.length === 0) {
+                return "No hay resultados previos.";
+            }
+    
+            return this.resultados.map(resultado => {
+                return `Fecha: ${resultado.fecha} | Puntaje: ${resultado.puntaje} | Nivel: ${resultado.nivel}`;
+            }).join("\n");
+        }
+    };
 
     // Reiniciar test
     function reiniciarTest() {
@@ -91,11 +122,9 @@ function diagnosticoAnsiedad() {
 
     nextButton.addEventListener("click", siguientePregunta);
     resetButton.addEventListener("click", reiniciarTest);
+    historialButton.addEventListener("click", () => {
+        alert(historialResultados.mostrarResultados());
+    });
 }
 
 diagnosticoAnsiedad();
-
-
-
-
-
